@@ -28,7 +28,8 @@ pub fn parser_of_lextoks<'a>() -> impl Parser<'a,&'a [LexToken], Spanned<SExpr>,
                         Spanned(SExpr::List(vec![]),SimpleSpan::new(open.span.start,close.span.end))),
                 
                 rpars
-                    .clone().recover_with(skip_then_retry_until(any().ignored(), end()))
+                    .clone()
+                        //.recover_with(skip_then_retry_until(any().ignored(), end()))
                     .separated_by(
                         just(LexTokenType::Comma).repeated().at_least(1)
                     )
@@ -37,7 +38,7 @@ pub fn parser_of_lextoks<'a>() -> impl Parser<'a,&'a [LexToken], Spanned<SExpr>,
                     .delimited_by(
                         just(LexTokenType::OpenBracket),
                         just(LexTokenType::CloseBracket)
-                            .recover_with(skip_then_retry_until(any().ignored(), end()))
+                           .recover_with(skip_then_retry_until(any().ignored(), end()))
                     )
                     .map(|x:Vec<Spanned<SExpr>>|
                         Spanned(SExpr::List(x),SimpleSpan::new(0,0))

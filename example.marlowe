@@ -1,1 +1,1 @@
-When! [1,2,!,3,???] 123123 close
+When! [1,2,!,3] (TimeParam "aaa") close
