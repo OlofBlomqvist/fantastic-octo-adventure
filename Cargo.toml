@@ -1,0 +1,18 @@
+[package]
+name = "marlowe_rs"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+ariadne = "0.3.0"
+chumsky = { git = "https://github.com/zesterer/chumsky", features=["label"] }
+#chumsky = "*"
+indoc = "2.0.1"
+miette = "5.9.0"
+thiserror = "1.0.40"
+#marlowe_lang = "*"
+marlowe_lang = { path = "../marlowe_rust"}
+schemars = "0.8.12"
+nom = "*"
